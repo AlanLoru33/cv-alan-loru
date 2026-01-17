@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TERMINAL_DOSSIER_ALAN_LORU_v4.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Fira+Code:wght@300;400;500;700&family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* ////////////////////////////////////////////////////////////
+           DEFINICIÓN DE VARIABLES Y ESTILOS NUCLEARES
+           //////////////////////////////////////////////////////////// */
+        :root {
+            --neon-cyan: #00ffff;
+            --neon-magenta: #ff00ff;
+            --neon-yellow: #fde047;
+            --bg-ultra-dark: #010103;
+            --panel-bg: rgba(2, 2, 5, 0.95);
+        }
+
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--bg-ultra-dark); }
+        ::-webkit-scrollbar-thumb { background: var(--neon-cyan); }
+
+        body {
+            background-color: var(--bg-ultra-dark);
+            font-family: 'Rajdhani', sans-serif;
+            color: #e2e8f0;
+            overflow-x: hidden;
+            background-image: 
+                linear-gradient(rgba(0, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+        }
+
+        /* ////////////////////////////////////////////////////////////
+           UTILIDADES DE INTERFAZ (UI)
+           //////////////////////////////////////////////////////////// */
+        .cyber-border-gradient {
+            border: 1px solid;
+            border-image-source: linear-gradient(135deg, var(--neon-cyan), var(--neon-magenta));
+            border-image-slice: 1;
+        }
+
+        .hex-vessel {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: linear-gradient(180deg, var(--neon-cyan), var(--neon-magenta));
+            padding: 3px;
+            filter: drop-shadow(0 0 15px rgba(0, 255, 255, 0.3));
+        }
+
+        .hex-content {
+            clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+            background: #000;
+        }
+
+        .panel-glass {
+            background: var(--panel-bg);
+            border: 1px solid rgba(0, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .panel-glass:hover {
+            border-color: var(--neon-cyan);
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.1);
+        }
+
+        .mono { font-family: 'Fira Code', monospace; }
+        .cyber { font-family: 'Orbitron', sans-serif; }
+
+        .text-glow { text-shadow: 0 0 10px rgba(0, 255, 255, 0.5); }
+
+        .status-dot {
+            height: 8px;
+            width: 8px;
+            border-radius: 50%;
+            display: inline-block;
+            background-color: var(--neon-cyan);
+            box-shadow: 0 0 10px var(--neon-cyan);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 255, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(0, 255, 255, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(0, 255, 255, 0); }
+        }
+
+        .link-interactive {
+            position: relative;
+            color: var(--neon-cyan);
+            text-decoration: none;
+            transition: 0.3s;
+        }
+
+        .link-interactive::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 1px;
+            bottom: -2px;
+            left: 0;
+            background-color: var(--neon-magenta);
+            transition: 0.3s;
+        }
+
+        .link-interactive:hover::after { width: 100%; }
+        .link-interactive:hover { color: var(--neon-magenta); }
+
+    </style>
+</head>
+<body class="p-2 md:p-6 lg:p-12">
+
+    <div class="max-w-7xl mx-auto space-y-10">
+
+        <header class="panel-glass p-8 md:p-14 border-b-2 border-cyan-500 overflow-hidden relative">
+            <div class="absolute top-0 right-0 p-4 opacity-5 pointer-events-none">
+                <span class="cyber text-[120px] font-black italic tracking-tighter">AL-33</span>
+            </div>
+
+            <div class="flex flex-col lg:flex-row items-center gap-12 relative z-10">
+                <div class="hex-vessel w-56 h-64 shrink-0">
+                    <div class="hex-content w-full h-full">
+                        <img src="https://i.ibb.co/1GNH15zK/Gemini-Generated-Image-m2arh7m2arh7m2ar-1.png" alt="ALAN LUCIANO LORU" class="w-full h-full object-cover grayscale brightness-110 contrast-125">
+                    </div>
+                </div>
+
+                <div class="flex-grow space-y-6 text-center lg:text-left">
+                    <div class="space-y-2">
+                        <div class="flex items-center justify-center lg:justify-start gap-3">
+                            <span class="status-dot"></span>
+                            <span class="mono text-[10px] tracking-[0.5em] text-cyan-500 uppercase">System_Active</span>
+                        </div>
+                        <h1 class="cyber text-5xl md:text-7xl font-black text-white leading-none tracking-tighter text-glow uppercase">
+                            ALAN LUCIANO <span class="text-cyan-400">LORU</span>
+                        </h1>
+                        <h2 class="text-magenta-500 cyber text-lg md:text-2xl font-bold tracking-[0.2em] uppercase">
+                            Especialista Soporte IT (Tier 2) // Ciberseguridad // Frontend
+                        </h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-4 gap-x-8 pt-8 border-t border-white/10 mono text-[11px]">
+                        <div class="flex items-center gap-3">
+                            <span class="text-cyan-500 font-bold">📍</span>
+                            <span>Grand Bourg, Buenos Aires, AR</span>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-cyan-500 font-bold">📞</span>
+                            <a href="tel:+541151056797" class="link-interactive">11-5105-6797</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-cyan-500 font-bold">✉️</span>
+                            <a href="mailto:alaloru26@gmail.com" class="link-interactive">alaloru26@gmail.com</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-cyan-500 font-bold">🔗</span>
+                            <a href="https://linkedin.com/in/alan-loru-servicedesk" target="_blank" class="link-interactive">LinkedIn Profile</a>
+                        </div>
+                        <div class="flex items-center gap-3">
+                            <span class="text-cyan-500 font-bold">🌐</span>
+                            <a href="https://alanloru33.github.io/alan-loru-cyber-hub" target="_blank" class="link-interactive">Terminal Portfolio</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <aside class="lg:col-span-4 space-y-10">
+                
+                <section class="panel-glass p-8 border-l-4 border-cyan-500">
+                    <h3 class="cyber text-xs text-cyan-400 mb-6 tracking-widest uppercase flex items-center gap-2">
+                        <span class="w-2 h-px bg-cyan-400"></span> 01_Perfil_Profesional
+                    </h3>
+                    <p class="text-sm text-gray-400 leading-relaxed text-justify font-light">
+                        Técnico de IT con una sólida trayectoria en <span class="text-white font-medium">Soporte Nivel 2 y Análisis de Seguridad (SOC)</span> en entornos de alta criticidad del sector gubernamental. 
+                        <br><br>
+                        Experto en la resolución de incidentes técnicos complejos bajo metodologías internacionales, gestión avanzada de identidades en infraestructuras <span class="text-white font-medium italic">Active Directory</span> y monitoreo proactivo de amenazas. 
+                        <br><br>
+                        Estudiante avanzado de la <span class="text-magenta-500 font-bold italic">Licenciatura en Ciberseguridad</span>, con visión integradora para el Desarrollo Frontend, garantizando soluciones digitales robustas, escalables y optimizadas bajo estándares de seguridad.
+                    </p>
+                </section>
+
+                <section class="panel-glass p-8 border-r-4 border-magenta-500">
+                    <h3 class="cyber text-xs text-magenta-500 mb-8 tracking-widest uppercase flex items-center gap-2">
+                        <span class="w-2 h-px bg-magenta-500"></span> 02_Arsenal_Técnico
+                    </h3>
+                    
+                    <div class="space-y-8">
+                        <div class="space-y-4">
+                            <p class="mono text-[10px] text-gray-500 underline tracking-tighter uppercase font-bold italic">Unidad Ciberseguridad / SOC</p>
+                            <div class="flex flex-wrap gap-2 text-[10px]">
+                                <span class="bg-cyan-900/10 border border-cyan-500/20 px-2 py-1 text-cyan-400">WAZUH (SIEM)</span>
+                                <span class="bg-cyan-900/10 border border-cyan-500/20 px-2 py-1 text-cyan-400">ALIENVAULT OSSIM</span>
+                                <span class="bg-cyan-900/10 border border-cyan-500/20 px-2 py-1 text-cyan-400">WIRESHARK (NET ANALYSIS)</span>
+                                <span class="bg-cyan-900/10 border border-cyan-500/20 px-2 py-1 text-cyan-400">PROCESS EXPLORER</span>
+                                <span class="bg-cyan-900/10 border border-cyan-500/20 px-2 py-1 text-cyan-400">ZABBIX MONITORING</span>
+                                <span class="bg-cyan-900/10 border border-cyan-500/20 px-2 py-1 text-cyan-400 font-bold">IPS/IDPS/EDR</span>
+                                <span class="bg-cyan-900/10 border border-cyan-500/20 px-2 py-1 text-cyan-400 italic">FORTICLIENT ANALYZER</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <p class="mono text-[10px] text-gray-500 underline tracking-tighter uppercase font-bold italic">Service Desk / Infraestructura</p>
+                            <div class="flex flex-wrap gap-2 text-[10px]">
+                                <span class="bg-white/5 border border-white/20 px-2 py-1">SERVICENOW (ITIL)</span>
+                                <span class="bg-white/5 border border-white/20 px-2 py-1">BMC REMEDY</span>
+                                <span class="bg-white/5 border border-white/20 px-2 py-1 font-bold">ACTIVE DIRECTORY (AD)</span>
+                                <span class="bg-white/5 border border-white/20 px-2 py-1 italic">ANYDESK REMOTE</span>
+                                <span class="bg-white/5 border border-white/20 px-2 py-1">MS TEAMS / ZOOM</span>
+                                <span class="bg-white/5 border border-white/20 px-2 py-1">DB INTERNAS PERSONALIZADAS</span>
+                            </div>
+                        </div>
+
+                        <div class="space-y-4">
+                            <p class="mono text-[10px] text-gray-500 underline tracking-tighter uppercase font-bold italic">Ingeniería & Automatización</p>
+                            <div class="flex flex-wrap gap-2 text-[10px]">
+                                <span class="bg-magenta-900/10 border border-magenta-500/20 px-2 py-1 text-magenta-400 font-bold">POWERSHELL (.PS1)</span>
+                                <span class="bg-magenta-900/10 border border-magenta-500/20 px-2 py-1 text-magenta-400 font-bold">BATCH (.BAT)</span>
+                                <span class="bg-magenta-900/10 border border-magenta-500/20 px-2 py-1 text-magenta-400">HTML5 / CSS3</span>
+                                <span class="bg-magenta-900/10 border border-magenta-500/20 px-2 py-1 text-magenta-400">TAILWIND CSS</span>
+                                <span class="bg-magenta-900/10 border border-magenta-500/20 px-2 py-1 text-magenta-400">GIT / GITHUB</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="panel-glass p-8 border-b-4 border-yellow-500">
+                    <h3 class="cyber text-xs text-yellow-500 mb-8 tracking-widest uppercase flex items-center gap-2">
+                        <span class="w-2 h-px bg-yellow-500"></span> 03_Formación
+                    </h3>
+                    <div class="space-y-8">
+                        <div class="relative pl-6 border-l border-yellow-500/30">
+                            <div class="absolute -left-[5px] top-0 w-2 h-2 bg-yellow-500"></div>
+                            <h4 class="text-white font-bold text-sm tracking-tight">LIC. EN CIBERSEGURIDAD</h4>
+                            <p class="text-[10px] mono text-yellow-500/70">UNSO - Univ. Nac. Scalabrini Ortiz</p>
+                            <p class="text-[10px] text-gray-500 mt-1 uppercase italic tracking-tighter">Status: 2° Año en curso</p>
+                        </div>
+                        <div class="relative pl-6 border-l border-gray-700">
+                            <h4 class="text-white font-bold text-sm tracking-tight uppercase">Cisco Networking Academy</h4>
+                            <p class="text-[10px] mono text-gray-500">Certificación: Fundamentos de Redes</p>
+                            <p class="text-[10px] mono text-gray-500 mt-1">Certificación: Get Connected</p>
+                        </div>
+                        <div class="relative pl-6 border-l border-gray-700">
+                            <h4 class="text-white font-bold text-sm tracking-tight uppercase">AcademiaBA</h4>
+                            <p class="text-[10px] mono text-gray-500 italic">Emprende Programación Inicial</p>
+                        </div>
+                    </div>
+                </section>
+            </aside>
+
+            <main class="lg:col-span-8 space-y-10">
+                
+                <div class="bg-cyan-500/5 p-6 border-l-8 border-cyan-500 flex justify-between items-center">
+                    <h2 class="cyber text-2xl text-white tracking-widest uppercase italic">Registros_de_Misión</h2>
+                    <span class="mono text-[10px] text-cyan-400 uppercase tracking-widest opacity-50">Total_Entries: 02</span>
+                </div>
+
+                <article class="panel-glass p-10 relative group">
+                    <div class="absolute top-0 right-0 bg-cyan-500 text-black px-4 py-1 cyber text-[10px] font-black italic">ACTIVE_MISSION</div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between mb-8 border-b border-white/5 pb-6">
+                        <div>
+                            <h3 class="text-3xl font-black text-white tracking-tighter uppercase">POLICÍA FEDERAL ARGENTINA</h3>
+                            <p class="cyber text-cyan-500 text-sm mt-1 uppercase tracking-widest font-bold italic">Soporte Técnico Especializado (Tier 2)</p>
+                        </div>
+                        <div class="text-right flex flex-col items-end gap-2 mt-4 md:mt-0">
+                            <span class="mono text-[11px] bg-cyan-500/20 text-cyan-400 px-4 py-1 border border-cyan-500/40 font-bold">01/2023 — ACTUALIDAD</span>
+                            <span class="mono text-[9px] text-gray-600">LOCATION: C.A.B.A. / SERVICE DESK</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                            <div class="md:col-span-3">
+                                <span class="mono text-[10px] text-cyan-600 font-bold block mb-2 uppercase tracking-tighter">[GESTIÓN_AD]</span>
+                            </div>
+                            <div class="md:col-span-9 text-gray-400 text-sm leading-relaxed">
+                                Administración experta en <strong class="text-white">Active Directory (AD)</strong>: Gestión de cuentas de usuario de alto rango, resolución de bloqueos de seguridad, auditoría de permisos y restablecimiento de credenciales críticas en dominios institucionales.
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                            <div class="md:col-span-3">
+                                <span class="mono text-[10px] text-cyan-600 font-bold block mb-2 uppercase tracking-tighter">[ITIL_INCIDENTS]</span>
+                            </div>
+                            <div class="md:col-span-9 text-gray-400 text-sm leading-relaxed">
+                                Gestión de ciclo de vida de incidentes de hardware y software bajo metodología <strong class="text-white">ITIL</strong>. Operación técnica avanzada en plataformas <strong class="text-white italic">ServiceNow</strong> y <strong class="text-white italic">BMC Remedy</strong>, garantizando el cumplimiento de SLAs y escalamiento eficiente.
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                            <div class="md:col-span-3">
+                                <span class="mono text-[10px] text-cyan-600 font-bold block mb-2 uppercase tracking-tighter">[HARDENING_OPS]</span>
+                            </div>
+                            <div class="md:col-span-9 text-gray-400 text-sm leading-relaxed">
+                                Implementación de medidas de <strong class="text-white">Hardening de Endpoint</strong>: Cierre de puertos vulnerables, configuración de túneles seguros mediante <strong class="text-white italic">VPN Fortinet</strong> y resolución de problemas de conectividad en routers y redes de impresión (Capa 2/3).
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                            <div class="md:col-span-3">
+                                <span class="mono text-[10px] text-cyan-600 font-bold block mb-2 uppercase tracking-tighter">[AUTOMATION]</span>
+                            </div>
+                            <div class="md:col-span-9 text-gray-400 text-sm leading-relaxed italic bg-cyan-500/5 p-4 border border-cyan-500/10">
+                                Desarrollo de <strong class="text-white font-bold tracking-widest">SCRIPTS (.PS1 & .BAT)</strong> personalizados para la automatización de despliegues masivos, mantenimiento preventivo de estaciones de trabajo y recolección automatizada de logs para diagnósticos técnicos profundos.
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="panel-glass p-10 relative">
+                    <div class="absolute top-0 right-0 bg-magenta-600 text-white px-4 py-1 cyber text-[10px] font-black italic uppercase tracking-tighter">Mission_Completed</div>
+                    
+                    <div class="flex flex-col md:flex-row justify-between mb-8 border-b border-white/5 pb-6">
+                        <div>
+                            <h3 class="text-3xl font-black text-white tracking-tighter uppercase italic">POLICÍA FEDERAL ARGENTINA</h3>
+                            <p class="cyber text-magenta-500 text-sm mt-1 uppercase tracking-widest font-bold">Analista SOC Jr. / Monitoreo y Respuesta</p>
+                        </div>
+                        <div class="text-right flex flex-col items-end gap-2 mt-4 md:mt-0">
+                            <span class="mono text-[11px] bg-magenta-500/20 text-magenta-400 px-4 py-1 border border-magenta-500/40 font-bold">01/2021 — 12/2022</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-8">
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                            <div class="md:col-span-3">
+                                <span class="mono text-[10px] text-magenta-600 font-bold block mb-2 uppercase tracking-tighter">[SIEM_OPERATIONS]</span>
+                            </div>
+                            <div class="md:col-span-9 text-gray-400 text-sm leading-relaxed">
+                                Monitoreo 24/7 de eventos de seguridad en tiempo real utilizando <strong class="text-white">Wazuh, AlienVault OSSIM y Zabbix</strong>. Correlación de alertas críticas en SIEM centralizado para identificar vectores de ataque y brechas de seguridad.
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                            <div class="md:col-span-3">
+                                <span class="mono text-[10px] text-magenta-600 font-bold block mb-2 uppercase tracking-tighter">[SEC_CONSOLE_MGMT]</span>
+                            </div>
+                            <div class="md:col-span-9 text-gray-400 text-sm leading-relaxed">
+                                Administración centralizada de consolas de protección: <strong class="text-white italic font-medium">FortiClient Analyzer, ESET Cloud y Trend Micro Apex One</strong>. Ejecución de protocolos de contención ante detección de malware, phishing y ataques de exfiltración.
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+                            <div class="md:col-span-3">
+                                <span class="mono text-[10px] text-magenta-600 font-bold block mb-2 uppercase tracking-tighter">[THREAT_INTEL]</span>
+                            </div>
+                            <div class="md:col-span-9 text-gray-400 text-sm leading-relaxed italic">
+                                Investigación técnica de amenazas mediante <strong class="text-white">Wireshark</strong> (análisis de flujo de paquetes), <strong class="text-white">Process Explorer</strong> (auditoría de procesos en Windows) y herramientas de inteligencia externas como VirusTotal, AbuseIPDB y Shodan.
+                            </div>
+                        </div>
+                    </div>
+                </article>
+
+                <section class="panel-glass p-10 bg-gradient-to-br from-cyan-950/20 via-black to-black border-2 border-cyan-500/30">
+                    <h3 class="cyber text-white text-2xl font-black mb-8 flex items-center gap-6">
+                        <span class="w-16 h-1 bg-cyan-400"></span> 
+                        PROYECTO_ALPHA: CYBER_HUB
+                    </h3>
+                    
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-xs">
+                        <div class="space-y-4">
+                            <div class="h-1 w-full bg-cyan-500/20"><div class="h-full bg-cyan-500 w-[95%]"></div></div>
+                            <p class="text-cyan-400 font-bold uppercase mono underline">Despliegue_Frontend</p>
+                            <p class="text-gray-500 leading-relaxed">Arquitectura de plataforma integral para servicios IT y Ciberseguridad. Implementación de <strong class="text-white">Tailwind CSS</strong> para una interfaz táctica responsiva.</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="h-1 w-full bg-cyan-500/20"><div class="h-full bg-cyan-500 w-[98%]"></div></div>
+                            <p class="text-cyan-400 font-bold uppercase mono underline">Optimización_Core</p>
+                            <p class="text-gray-500 leading-relaxed">Refactorización de código para máxima velocidad de carga y cumplimiento de estándares SEO y accesibilidad (A11y).</p>
+                        </div>
+                        <div class="space-y-4">
+                            <div class="h-1 w-full bg-cyan-500/20"><div class="h-full bg-cyan-500 w-[90%]"></div></div>
+                            <p class="text-cyan-400 font-bold uppercase mono underline">Hardening_Web</p>
+                            <p class="text-gray-500 leading-relaxed">Aplicación de capas de seguridad en el código fuente para prevenir inyecciones y vulnerabilidades comunes en el cliente.</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-10 pt-8 border-t border-white/5 flex justify-between items-center">
+                        <span class="mono text-[10px] text-gray-700">REPO: github.com/alanloru33</span>
+                        <a href="https://alanloru33.github.io/alan-loru-cyber-hub" target="_blank" class="bg-cyan-500 text-black px-6 py-2 cyber text-[10px] font-black hover:bg-white transition duration-300">
+                            INSPECT_LIVE_VERSION
+                        </a>
+                    </div>
+                </section>
+
+            </main>
+        </div>
+
+        <footer class="mt-20 py-16 border-t border-gray-900 text-center space-y-8 relative">
+            <div class="flex justify-center gap-10 opacity-20">
+                <span class="cyber text-[10px] text-white">INTEGRIDAD: 100%</span>
+                <span class="cyber text-[10px] text-white">ENCRIPTACIÓN: AES-256</span>
+                <span class="cyber text-[10px] text-white">NODES: GRAND_BOURG</span>
+            </div>
+            
+            <p class="mono text-[10px] text-gray-800 tracking-[1.5em] uppercase select-none">
+                ALAN_LUCIANO_LORU // SECURITY_DOSSIER_2026 // UNCLASSIFIED
+            </p>
+
+            <div class="absolute bottom-4 right-4 flex gap-1">
+                <div class="w-1 h-4 bg-cyan-500"></div>
+                <div class="w-1 h-4 bg-magenta-500"></div>
+                <div class="w-1 h-4 bg-yellow-500"></div>
+            </div>
+        </footer>
+
+    </div>
+
+    <script>
+        window.addEventListener('load', () => {
+            console.log("%c [UPLINK_ESTABLISHED]: Dossier Alan Loru v4.0 loaded successfully.", "color: #00ffff; font-weight: bold;");
+        });
+    </script>
+
+</body>
+</html>
